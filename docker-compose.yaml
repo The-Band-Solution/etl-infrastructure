@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  msdevops:
+    container_name: immigrant-etl-msdevops
+    image: registry.gitlab.com/immigrant-data-driven-development/etl/extract/azuredevops-extract
+    environment:
+      - TOPIC=${TOPIC_DEVOPS}
+      - SERVERS=${SERVERS_DEVOPS}
+      - GROUP_ID=${GROUP_ID_DEVOPS}
+  gitlab:
+    container_name: immigrant-etl-gitlab
+    image: registry.gitlab.com/immigrant-data-driven-development/etl/extract/gitlab-extract
+    environment:
+      - TOPIC=${TOPIC_GITAB}
+      - SERVERS=${SERVERS_GITAB}
+      - GROUP_ID=${GROUP_ID_GITAB}
+  sonar:
+    container_name: immigrant-etl-sonar
+    image: registry.gitlab.com/immigrant-data-driven-development/etl/extract/sonarcloud-extract
+    environment:
+      - TOPIC=${TOPIC_SONAR}
+      - SERVERS=${SERVERS_SONAR}
+      - GROUP_ID=${GROUP_ID_SONAR}
+  jira:
+    container_name: immigrant-etl-jira
+    image: registry.gitlab.com/immigrant-data-driven-development/etl/extract/jira-extract
+    environment:
+      - TOPIC=${TOPIC_JIRA}
+      - SERVERS=${SERVERS_JIRA}
+      - GROUP_ID=${GROUP_ID_JIRA}
+  
+networks: 
+  default: 
+    name: base-infrastrutrure
+    external: true  
